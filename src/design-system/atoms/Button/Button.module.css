@@ -17,16 +17,16 @@
   white-space: nowrap;
 }
 
-/* Vymo Signature Purple Action */
+/* Vymo Signature Action (#f35f60) */
 .primary {
   background-color: var(--color-primary);
   color: var(--color-text-inverse);
-  box-shadow: 0 2px 4px rgba(80, 94, 206, 0.2);
+  box-shadow: 0 2px 6px rgba(243, 95, 96, 0.25);
 }
 
 .primary:hover:not(:disabled) {
   background-color: var(--color-primary-hover);
-  box-shadow: 0 4px 10px rgba(80, 94, 206, 0.3);
+  box-shadow: 0 4px 12px rgba(243, 95, 96, 0.35);
 }
 
 .primary:active:not(:disabled) {

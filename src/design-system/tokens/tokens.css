@@ -1,4 +1,5 @@
 /* Design System Tokens: Vymo Brand Palette (https://vymo.com)
+   Primary Brand: #f35f60 (Vymo Coral)
    Color System, Spacing, Typography, and Breakpoints */
 
 :root {
@@ -9,7 +10,7 @@
   --color-bg: #f8f9fd;
   --color-surface: #ffffff;
   --color-surface-muted: #f0f2f7;
-  --color-surface-hover: #f7f6fe;
+  --color-surface-hover: #fff8f8;
 
   /* Typography Colors (Vymo Slate Hierarchy) */
   --color-text-primary: #232632;    /* Vymo primary text & headings */
@@ -19,22 +20,22 @@
 
   /* Borders & Dividers */
   --color-border: #e7e9ef;          /* Vymo card border */
-  --color-border-hover: #505ece;    /* Brand active border */
+  --color-border-hover: #f35f60;    /* Brand active border */
   --color-border-subtle: #ede9e9;
 
-  /* Primary Brand (Vymo Signature Purple/Indigo #505ECE) */
-  --color-primary: #505ece;
-  --color-primary-hover: #414eb8;
-  --color-primary-active: #353f9e;
-  --color-primary-light: #eee9ff;   /* Vymo soft purple tint */
-  --color-primary-text: #505ece;
+  /* Primary Brand (#f35f60 Vymo Coral) */
+  --color-primary: #f35f60;
+  --color-primary-hover: #e04b4c;
+  --color-primary-active: #cb3b3c;
+  --color-primary-light: #fff1f1;   /* Soft coral tint */
+  --color-primary-text: #e04849;
 
   /* Vymo Dark Action (Header button #232632) */
   --color-dark-action: #232632;
   --color-dark-action-hover: #171821;
 
   /* Vymo Brand Accents */
-  --color-accent-coral: #ff8b7c;
+  --color-accent-coral: #f35f60;
   --color-accent-gold: #ffc75a;
   --color-accent-teal: #307388;
   --color-accent-cyan-light: #e5feff;
@@ -48,8 +49,8 @@
   --color-error-text: #991b1b;
 
   /* Focus & Interactive */
-  --color-focus-ring: rgba(80, 94, 206, 0.22);
-  --color-focus-border: #505ece;
+  --color-focus-ring: rgba(243, 95, 96, 0.25);
+  --color-focus-border: #f35f60;
   --color-disabled-bg: #f0f2f7;
   --color-disabled-text: #94a3b8;
   --color-disabled-border: #e2e8f0;
