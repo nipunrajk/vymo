@@ -15,7 +15,7 @@ export interface TextInputProps {
   autoComplete?: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({
+export const TextInput = ({
   id,
   name,
   type = 'text',
@@ -27,7 +27,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   hasError = false,
   ariaDescribedBy,
   autoComplete,
-}) => {
+}: TextInputProps) => {
   return (
     <input
       id={id}

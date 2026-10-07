@@ -5,7 +5,6 @@
   background-color: var(--color-bg);
 }
 
-/* Minimal Top Header */
 .topHeader {
   background-color: var(--color-surface);
   border-bottom: 1px solid var(--color-border);
@@ -30,12 +29,10 @@
   padding: var(--space-5) var(--space-4) var(--space-10);
 }
 
-/* Header & Intro */
 .header {
   margin-bottom: var(--space-4);
   text-align: center;
 }
-
 
 .title {
   font-size: 1.375rem;
@@ -53,7 +50,6 @@
   line-height: var(--line-height-base);
 }
 
-/* Quick Test Toolbar for Reviewers */
 .devToolbar {
   display: flex;
   align-items: center;
@@ -101,7 +97,6 @@
   border-color: var(--color-primary);
 }
 
-/* Card Container with Vymo Elevated Styling */
 .card {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -138,7 +133,6 @@
   }
 }
 
-/* Submission Result View */
 .successCard {
   background-color: var(--color-surface);
   border: 1px solid var(--color-success-border);
@@ -198,6 +192,13 @@
 .tablePreview td {
   color: var(--color-text-primary);
   font-weight: var(--font-weight-medium);
+}
+
+.previewHeading {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
 }
 
 .dataPreview {

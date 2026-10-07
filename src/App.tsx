@@ -1,8 +1,7 @@
-import React from 'react';
 import { LeadCapturePage } from './features/lead/pages/LeadCapturePage';
 
-export const App: React.FC = () => {
+export function App() {
   return <LeadCapturePage />;
-};
+}
 
 export default App;

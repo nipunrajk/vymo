@@ -2,11 +2,11 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { LeadCapturePage } from './LeadCapturePage';
 
-describe('LeadCapturePage Component Integration Tests', () => {
-  it('renders initial form fields from config (excluding conditionally hidden Company Name)', () => {
+describe('LeadCapturePage', () => {
+  it('renders initial form fields from config with Company Name hidden by default', () => {
     render(<LeadCapturePage />);
 
-    expect(screen.getByRole('heading', { name: /enterprise lead capture/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /lead capture/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/full name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/lead type/i)).toBeInTheDocument();

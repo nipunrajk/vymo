@@ -12,7 +12,7 @@ export interface ButtonProps {
   id?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   type = 'button',
   variant = 'primary',
   disabled = false,
@@ -21,7 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   children,
   id,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       id={id}

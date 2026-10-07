@@ -1,3 +1,5 @@
+import type { FormEvent } from 'react';
+
 export type FieldType = 'text' | 'email' | 'select' | 'textarea' | 'checkbox';
 
 export interface SelectOption {
@@ -5,13 +7,18 @@ export interface SelectOption {
   value: string;
 }
 
+export type FormValue = string | boolean | number;
+export type FormValues = Record<string, FormValue | undefined>;
+export type FormErrors = Record<string, string>;
+export type FormTouched = Record<string, boolean>;
+
 export interface ValidationRules {
   required?: boolean;
   requiredMessage?: string;
   pattern?: { regex: RegExp; message: string };
   minLength?: { value: number; message: string };
   maxLength?: { value: number; message: string };
-  validate?: (value: any, allValues: Record<string, any>) => string | null | undefined;
+  validate?: (value: FormValue | undefined, allValues: FormValues) => string | null | undefined;
 }
 
 export interface FieldConfig {
@@ -22,14 +29,10 @@ export interface FieldConfig {
   hint?: string;
   options?: SelectOption[];
   validations?: ValidationRules;
-  condition?: (values: Record<string, any>) => boolean;
+  condition?: (values: FormValues) => boolean;
   colSpan?: 1 | 2;
   autoComplete?: string;
 }
-
-export type FormValues = Record<string, any>;
-export type FormErrors = Record<string, string>;
-export type FormTouched = Record<string, boolean>;
 
 export interface DynamicFormProps {
   config: FieldConfig[];
@@ -38,7 +41,8 @@ export interface DynamicFormProps {
   touched: FormTouched;
   isSubmitting?: boolean;
   submitLabel?: string;
-  onChange: (name: string, value: any) => void;
+  onChange: (name: string, value: FormValue) => void;
   onBlur: (name: string) => void;
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
 }
+

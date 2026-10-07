@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { leadFormConfig } from '../config/leadFormConfig';
 import { validateLeadForm, validateSingleField } from './validateLeadForm';
 
-describe('validateLeadForm pure engine', () => {
+describe('validateLeadForm', () => {
   it('returns errors for all required fields when form is empty', () => {
     const emptyValues = {
       fullName: '',

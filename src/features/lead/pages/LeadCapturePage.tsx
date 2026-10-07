@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { DynamicForm } from '../../../design-system/form/DynamicForm';
 import { Button } from '../../../design-system/atoms/Button/Button';
-import type { FormErrors, FormTouched, FormValues } from '../../../design-system/form/types';
+import type { FormErrors, FormTouched, FormValue, FormValues } from '../../../design-system/form/types';
 import { leadFormConfig } from '../config/leadFormConfig';
 import {
   emptyLeadFormValues,
@@ -11,60 +11,29 @@ import {
 import { validateLeadForm, validateSingleField } from '../validation/validateLeadForm';
 import styles from './LeadCapturePage.module.css';
 
-export const LeadCapturePage: React.FC = () => {
+export const LeadCapturePage = () => {
   const [values, setValues] = useState<FormValues>(emptyLeadFormValues);
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<FormTouched>({});
   const [submittedData, setSubmittedData] = useState<FormValues | null>(null);
 
-  // Field change handler: updates values & re-validates if already touched
-  const handleChange = (name: string, value: any) => {
-    setValues((prev) => {
-      const updated = { ...prev, [name]: value };
-
-      // If switching Lead type away from 'Company', clear companyName value
-      if (name === 'leadType' && value !== 'Company') {
-        updated.companyName = '';
-      }
-
-      return updated;
-    });
-
-    // If the field was already touched, perform immediate re-validation
-    if (touched[name]) {
-      const updatedValues = { ...values, [name]: value };
-      if (name === 'leadType' && value !== 'Company') {
-        updatedValues.companyName = '';
-      }
-
-      const fieldConfig = leadFormConfig.find((f) => f.name === name);
-      if (fieldConfig) {
-        const error = validateSingleField(fieldConfig, updatedValues);
-        setErrors((prev) => {
-          const next = { ...prev };
-          if (error) {
-            next[name] = error;
-          } else {
-            delete next[name];
-          }
-
-          // If leadType changed to Individual, clear any existing companyName error
-          if (name === 'leadType' && value !== 'Company') {
-            delete next.companyName;
-          }
-          return next;
-        });
-      }
-    }
+  const validateField = (name: string, formValues: FormValues) => {
+    const fieldConfig = leadFormConfig.find((f) => f.name === name);
+    return fieldConfig ? validateSingleField(fieldConfig, formValues) : null;
   };
 
-  // Field blur handler: marks field as touched and computes error
-  const handleBlur = (name: string) => {
-    setTouched((prev) => ({ ...prev, [name]: true }));
+  const handleChange = (name: string, value: FormValue) => {
+    const nextValues: FormValues = { ...values, [name]: value };
 
-    const fieldConfig = leadFormConfig.find((f) => f.name === name);
-    if (fieldConfig) {
-      const error = validateSingleField(fieldConfig, values);
+    // Reset company name when switching away from Company
+    if (name === 'leadType' && value !== 'Company') {
+      nextValues.companyName = '';
+    }
+
+    setValues(nextValues);
+
+    if (touched[name]) {
+      const error = validateField(name, nextValues);
       setErrors((prev) => {
         const next = { ...prev };
         if (error) {
@@ -72,16 +41,32 @@ export const LeadCapturePage: React.FC = () => {
         } else {
           delete next[name];
         }
+        if (name === 'leadType' && value !== 'Company') {
+          delete next.companyName;
+        }
         return next;
       });
     }
   };
 
-  // Form submit handler: validates all visible fields, blocks if invalid
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleBlur = (name: string) => {
+    setTouched((prev) => ({ ...prev, [name]: true }));
+
+    const error = validateField(name, values);
+    setErrors((prev) => {
+      const next = { ...prev };
+      if (error) {
+        next[name] = error;
+      } else {
+        delete next[name];
+      }
+      return next;
+    });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Mark all visible fields as touched so all current errors are displayed
     const allTouched: FormTouched = {};
     leadFormConfig.forEach((field) => {
       if (!field.condition || field.condition(values)) {
@@ -90,27 +75,20 @@ export const LeadCapturePage: React.FC = () => {
     });
     setTouched(allTouched);
 
-    // Run pure validation on current values
     const currentErrors = validateLeadForm(leadFormConfig, values);
     setErrors(currentErrors);
 
     const errorKeys = Object.keys(currentErrors);
     if (errorKeys.length > 0) {
-      // Focus first invalid field for accessibility
-      const firstInvalidFieldName = errorKeys[0];
-      const targetElement = document.getElementById(`field-${firstInvalidFieldName}`);
-      if (targetElement) {
-        targetElement.focus();
-      }
+      const firstInvalidField = document.getElementById(`field-${errorKeys[0]}`);
+      firstInvalidField?.focus();
       return;
     }
 
-    // Submission succeeded! Print values to console as requested
     console.log('Lead form submitted successfully:', values);
     setSubmittedData(values);
   };
 
-  // Reset or pre-fill handlers
   const handleReset = () => {
     setValues(emptyLeadFormValues);
     setErrors({});
@@ -125,9 +103,9 @@ export const LeadCapturePage: React.FC = () => {
     setSubmittedData(null);
   };
 
+
   return (
     <div className={styles.pageWrapper}>
-      {/* Vymo Header with Official Logo */}
       <header className={styles.topHeader}>
         <div className={styles.topHeaderContainer}>
           <svg
@@ -203,20 +181,14 @@ export const LeadCapturePage: React.FC = () => {
 
       <main className={styles.main}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Enterprise Lead Capture</h1>
+          <h1 className={styles.title}>Lead Capture</h1>
           <p className={styles.subtitle}>
-            Adaptive qualification and lead distribution for financial institutions.
+            Enter your contact details below to submit a new lead.
           </p>
         </header>
 
-        {/* Quick Testing Toolbar for Reviewers */}
         <div className={styles.devToolbar}>
-          <span className={styles.toolbarLabel}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
-            </svg>
-            Reviewer Quick Actions:
-          </span>
+          <span className={styles.toolbarLabel}>Quick test presets:</span>
           <div className={styles.toolbarActions}>
             <button
               type="button"
@@ -242,7 +214,6 @@ export const LeadCapturePage: React.FC = () => {
           </div>
         </div>
 
-        {/* Form or Submission Results */}
         {submittedData ? (
           <section className={styles.successCard} aria-labelledby="submission-success-title">
             <div className={styles.successHeader}>
@@ -306,9 +277,7 @@ export const LeadCapturePage: React.FC = () => {
               </tbody>
             </table>
 
-            <h3 style={{ fontSize: '0.875rem', marginBottom: '8px', color: 'var(--color-text-secondary)' }}>
-              Raw JSON Payload:
-            </h3>
+            <h3 className={styles.previewHeading}>Submitted JSON</h3>
             <pre className={styles.dataPreview}>
               {JSON.stringify(submittedData, null, 2)}
             </pre>

@@ -12,7 +12,7 @@ export interface FieldMoleculeProps {
   children: React.ReactNode;
 }
 
-export const Field: React.FC<FieldMoleculeProps> = ({
+export const Field = ({
   id,
   label,
   required = false,
@@ -21,7 +21,7 @@ export const Field: React.FC<FieldMoleculeProps> = ({
   colSpan = 1,
   hideLabel = false,
   children,
-}) => {
+}: FieldMoleculeProps) => {
   return (
     <div className={`${styles.field} ${colSpan === 2 ? styles.span2 : styles.span1}`}>
       {!hideLabel && label && (

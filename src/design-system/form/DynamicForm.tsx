@@ -1,4 +1,3 @@
-import React from 'react';
 import { TextInput } from '../atoms/TextInput/TextInput';
 import { Select } from '../atoms/Select/Select';
 import { Checkbox } from '../atoms/Checkbox/Checkbox';
@@ -8,7 +7,7 @@ import { Field } from '../molecules/Field/Field';
 import type { DynamicFormProps, FieldConfig } from './types';
 import styles from './DynamicForm.module.css';
 
-export const DynamicForm: React.FC<DynamicFormProps> = ({
+export const DynamicForm = ({
   config,
   values,
   errors,
@@ -18,7 +17,7 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
   onChange,
   onBlur,
   onSubmit,
-}) => {
+}: DynamicFormProps) => {
   const renderFieldControl = (field: FieldConfig, fieldId: string, hasError: boolean, ariaDescribedBy?: string) => {
     switch (field.type) {
       case 'text':
@@ -28,7 +27,7 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
             id={fieldId}
             name={field.name}
             type={field.type}
-            value={values[field.name] ?? ''}
+            value={String(values[field.name] ?? '')}
             onChange={(e) => onChange(field.name, e.target.value)}
             onBlur={() => onBlur(field.name)}
             placeholder={field.placeholder}
@@ -43,7 +42,7 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
           <Select
             id={fieldId}
             name={field.name}
-            value={values[field.name] ?? ''}
+            value={String(values[field.name] ?? '')}
             onChange={(e) => onChange(field.name, e.target.value)}
             onBlur={() => onBlur(field.name)}
             options={field.options ?? []}
@@ -58,7 +57,7 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
           <Textarea
             id={fieldId}
             name={field.name}
-            value={values[field.name] ?? ''}
+            value={String(values[field.name] ?? '')}
             onChange={(e) => onChange(field.name, e.target.value)}
             onBlur={() => onBlur(field.name)}
             placeholder={field.placeholder}
@@ -91,7 +90,6 @@ export const DynamicForm: React.FC<DynamicFormProps> = ({
     <form onSubmit={onSubmit} noValidate className={styles.form}>
       <div className={styles.grid}>
         {config.map((field) => {
-          // Conditional visibility evaluation
           if (field.condition && !field.condition(values)) {
             return null;
           }

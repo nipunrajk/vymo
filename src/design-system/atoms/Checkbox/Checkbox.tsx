@@ -13,7 +13,7 @@ export interface CheckboxProps {
   ariaDescribedBy?: string;
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox = ({
   id,
   name,
   checked,
@@ -23,7 +23,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   disabled = false,
   hasError = false,
   ariaDescribedBy,
-}) => {
+}: CheckboxProps) => {
   return (
     <label
       htmlFor={id}

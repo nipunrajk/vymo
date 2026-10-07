@@ -19,7 +19,7 @@ export interface SelectProps {
   ariaDescribedBy?: string;
 }
 
-export const Select: React.FC<SelectProps> = ({
+export const Select = ({
   id,
   name,
   value,
@@ -30,7 +30,7 @@ export const Select: React.FC<SelectProps> = ({
   disabled = false,
   hasError = false,
   ariaDescribedBy,
-}) => {
+}: SelectProps) => {
   return (
     <div className={styles.selectWrapper}>
       <select

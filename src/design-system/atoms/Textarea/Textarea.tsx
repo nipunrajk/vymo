@@ -15,7 +15,7 @@ export interface TextareaProps {
   ariaDescribedBy?: string;
 }
 
-export const Textarea: React.FC<TextareaProps> = ({
+export const Textarea = ({
   id,
   name,
   value,
@@ -27,7 +27,7 @@ export const Textarea: React.FC<TextareaProps> = ({
   disabled = false,
   hasError = false,
   ariaDescribedBy,
-}) => {
+}: TextareaProps) => {
   return (
     <textarea
       id={id}

@@ -1,6 +1,8 @@
+import type { FormValues } from '../../../design-system/form/types';
+
 export type LeadClassification = 'Individual' | 'Company';
 
-export interface LeadFormData {
+export interface LeadFormData extends FormValues {
   fullName: string;
   email: string;
   leadType: LeadClassification | '';
