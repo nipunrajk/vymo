@@ -209,7 +209,7 @@ export const LeadCapturePage: React.FC = () => {
           </div>
           <h1 className={styles.title}>Enterprise Lead Capture</h1>
           <p className={styles.subtitle}>
-            Built with React 19 and Vymo&apos;s Design System tokens. Streamlining lead qualification and distribution for financial institutions.
+            Adaptive qualification and lead distribution for financial institutions.
           </p>
         </header>
 
