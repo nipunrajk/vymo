@@ -203,10 +203,6 @@ export const LeadCapturePage: React.FC = () => {
 
       <main className={styles.main}>
         <header className={styles.header}>
-          <div className={styles.badge}>
-            <span className={styles.badgeDot} />
-            <span>Config-Driven Dynamic Form</span>
-          </div>
           <h1 className={styles.title}>Enterprise Lead Capture</h1>
           <p className={styles.subtitle}>
             Adaptive qualification and lead distribution for financial institutions.
