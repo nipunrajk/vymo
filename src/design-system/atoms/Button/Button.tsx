@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'dark';
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;

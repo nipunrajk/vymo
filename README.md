@@ -82,7 +82,7 @@ src/
 
 | Component / Layer | Location | Purpose |
 |-------------------|----------|---------|
-| **Tokens** | [`src/design-system/tokens/tokens.css`](file:///Users/nipun/projects-2026/Vymo/src/design-system/tokens/tokens.css) | Defines design tokens: colors, spacing scale, typography, elevation, and media breakpoints. |
+| **Tokens (Vymo Palette)** | [`src/design-system/tokens/tokens.css`](file:///Users/nipun/projects-2026/Vymo/src/design-system/tokens/tokens.css) | Defines Vymo's design tokens: `#505ECE` (Vymo signature purple), `#232632` (dark slate), `#3A405A` (body slate), `#EEE9FF` (tint), `#E7E9EF` (borders), Plus Jakarta Sans typography, and responsive breakpoints. |
 | **Atoms** | [`src/design-system/atoms/`](file:///Users/nipun/projects-2026/Vymo/src/design-system/atoms/) | Pure UI controls (`TextInput`, `Select`, `Checkbox`, `Textarea`, `Button`). They receive values, labels, and events, and contain **no lead logic**. |
 | **Field Molecule** | [`src/design-system/molecules/Field/`](file:///Users/nipun/projects-2026/Vymo/src/design-system/molecules/Field/) | Combines `<label>`, the control slot, hint text, and an accessible `<div role="alert">` error message with `aria-describedby` wiring. |
 | **Dynamic Form** | [`src/design-system/form/DynamicForm.tsx`](file:///Users/nipun/projects-2026/Vymo/src/design-system/form/DynamicForm.tsx) | Iterates over the config array, filters hidden fields, and maps each entry to its atom. |

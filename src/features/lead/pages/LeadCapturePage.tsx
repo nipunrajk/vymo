@@ -127,6 +127,56 @@ export const LeadCapturePage: React.FC = () => {
 
   return (
     <div className={styles.pageWrapper}>
+      {/* Vymo Brand Header */}
+      <nav className={styles.navbar} aria-label="Brand Header">
+        <div className={styles.navContainer}>
+          <div className={styles.logoGroup}>
+            {/* Vymo Official Brand SVG Mark */}
+            <svg
+              width="100"
+              height="28"
+              viewBox="0 0 100 28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-label="Vymo"
+            >
+              {/* V mark in signature Vymo purple */}
+              <path
+                d="M4.5 4L13.5 22L22.5 4H16.8L13.5 13.8L10.2 4H4.5Z"
+                fill="var(--color-primary)"
+              />
+              {/* Y in dark slate */}
+              <path
+                d="M26 4L31 13.5V22H34.5V13.5L39.5 4H35.8L32.8 10.5L29.7 4H26Z"
+                fill="var(--color-text-primary)"
+              />
+              {/* M in dark slate */}
+              <path
+                d="M43 4V22H46.5V10.2L50.5 17.5H52L56 10.2V22H59.5V4H56.5L51.3 13.5L46 4H43Z"
+                fill="var(--color-text-primary)"
+              />
+              {/* O in dark slate */}
+              <path
+                d="M71.5 3.5C65.7 3.5 61 8.2 61 14C61 19.8 65.7 22.5 71.5 22.5C77.3 22.5 82 19.8 82 14C82 8.2 77.3 3.5 71.5 3.5ZM71.5 19C67.6 19 64.5 16.8 64.5 14C64.5 11.2 67.6 7 71.5 7C75.4 7 78.5 11.2 78.5 14C78.5 16.8 75.4 19 71.5 19Z"
+                fill="var(--color-text-primary)"
+              />
+            </svg>
+            <span className={styles.brandTag}>Design System</span>
+          </div>
+
+          <div className={styles.navLinks}>
+            <a
+              href="https://vymo.com"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.navLink}
+            >
+              vymo.com ↗
+            </a>
+          </div>
+        </div>
+      </nav>
+
       <main className={styles.main}>
         <header className={styles.header}>
           <div className={styles.badge}>
@@ -135,13 +185,18 @@ export const LeadCapturePage: React.FC = () => {
           </div>
           <h1 className={styles.title}>Enterprise Lead Capture</h1>
           <p className={styles.subtitle}>
-            Built with React 19, an atomic design system, typed configuration, and a pure validation engine.
+            Built with React 19 and Vymo&apos;s Design System tokens. Streamlining lead qualification and distribution for financial institutions.
           </p>
         </header>
 
         {/* Quick Testing Toolbar for Reviewers */}
         <div className={styles.devToolbar}>
-          <span className={styles.toolbarLabel}>Reviewer Quick Actions:</span>
+          <span className={styles.toolbarLabel}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            Reviewer Quick Actions:
+          </span>
           <div className={styles.toolbarActions}>
             <button
               type="button"
@@ -176,7 +231,7 @@ export const LeadCapturePage: React.FC = () => {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
