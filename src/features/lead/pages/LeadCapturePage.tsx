@@ -1,7 +1,12 @@
 import { useState, type FormEvent } from 'react';
-import { DynamicForm } from '../../../design-system/form/DynamicForm';
-import { Button } from '../../../design-system/atoms/Button/Button';
-import type { FormErrors, FormTouched, FormValue, FormValues } from '../../../design-system/form/types';
+import { Button } from '../../../design-system/atoms';
+import {
+  DynamicForm,
+  type FormErrors,
+  type FormTouched,
+  type FormValue,
+  type FormValues,
+} from '../../../design-system/form';
 import { leadFormConfig } from '../config/leadFormConfig';
 import {
   emptyLeadFormValues,

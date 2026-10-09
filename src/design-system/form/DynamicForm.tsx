@@ -1,9 +1,5 @@
-import { TextInput } from '../atoms/TextInput/TextInput';
-import { Select } from '../atoms/Select/Select';
-import { Checkbox } from '../atoms/Checkbox/Checkbox';
-import { Textarea } from '../atoms/Textarea/Textarea';
-import { Button } from '../atoms/Button/Button';
-import { Field } from '../molecules/Field/Field';
+import { Button, Checkbox, Select, Textarea, TextInput } from '../atoms';
+import { Field } from '../molecules';
 import type { DynamicFormProps, FieldConfig } from './types';
 import styles from './DynamicForm.module.css';
 
